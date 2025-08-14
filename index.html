@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>🚀 Smart Compiler</title> <!-- Emoji added here -->
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/3296/3296464.png">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+            background: #f5f5f5;
+        }
+        header {
+            background: linear-gradient(90deg, #007bff, #6610f2);
+            color: white;
+            padding: 12px;
+            text-align: center;
+            font-size: 1.8em;
+            font-weight: bold;
+            letter-spacing: 1px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        .editor-container {
+            display: flex;
+            flex: 1;
+            gap: 10px;
+            padding: 10px;
+        }
+        textarea {
+            flex: 1;
+            padding: 10px;
+            font-family: monospace;
+            border: 1px solid #ccc;
+            resize: none;
+            border-radius: 5px;
+            outline: none;
+            height: 100%;
+        }
+        iframe {
+            flex: 1;
+            border: none;
+            background: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        🚀 Smart Compiler
+    </header>
+    
+    <div class="editor-container">
+        <textarea id="htmlCode" placeholder="Write HTML here..."></textarea>
+        <textarea id="cssCode" placeholder="Write CSS here..."></textarea>
+        <textarea id="jsCode" placeholder="Write JavaScript here..."></textarea>
+    </div>
+    
+    <iframe id="output"></iframe>
+
+    <script>
+        const htmlEditor = document.getElementById("htmlCode");
+        const cssEditor = document.getElementById("cssCode");
+        const jsEditor = document.getElementById("jsCode");
+        const output = document.getElementById("output");
+
+        function runCode() {
+            const html = htmlEditor.value;
+            const css = `<style>${cssEditor.value}</style>`;
+            const js = `<script>${jsEditor.value}<\/script>`;
+            output.srcdoc = html + css + js;
+        }
+
+        [htmlEditor, cssEditor, jsEditor].forEach(editor => {
+            editor.addEventListener("keyup", runCode);
+        });
+
+        runCode();
+    </script>
+</body>
+</html>
